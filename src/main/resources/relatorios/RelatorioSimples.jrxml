@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioSimples" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1087a482-c3b0-4d7a-be24-66b41bf012bc">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[cHJvbW9zLnByb21vY29lcyBBUyAsNjcsNjksZDQ0ZDA3ZGEtMDBmOC00MWQxLTk4YzAtMzJhODI1
+NTdmYTg2Ow==]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco Promos"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT promos.promocoes.idpromocao,
+	promos.promocoes.nomeproduto,
+	promos.promocoes.precoproduto,
+	promos.promocoes.porcentagemdesconto
+FROM promos.promocoes
+ORDER BY promos.promocoes.nomeproduto ASC]]>
+	</queryString>
+	<field name="idpromocao" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idpromocao"/>
+		<property name="com.jaspersoft.studio.field.label" value="idpromocao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="promocoes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomeproduto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nomeproduto"/>
+		<property name="com.jaspersoft.studio.field.label" value="nomeproduto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="promocoes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precoproduto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="precoproduto"/>
+		<property name="com.jaspersoft.studio.field.label" value="precoproduto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="promocoes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="porcentagemdesconto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="porcentagemdesconto"/>
+		<property name="com.jaspersoft.studio.field.label" value="porcentagemdesconto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="promocoes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="PRECO_COM_DESCONTO" class="java.lang.Double" resetType="None">
+		<variableExpression><![CDATA[(Double.valueOf($F{precoproduto})-(Double.valueOf($F{precoproduto})*Double.valueOf($F{porcentagemdesconto})/100))]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79" uuid="599a1910-908a-44ca-8b47-daad58ad1db7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROMOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="110" splitType="Prevent">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="110" uuid="cb48279e-c001-4b3a-8a91-20fc4ea1dc51">
+					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue( ) % 2 == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="110" forecolor="#000000" backcolor="#F0F0F0" uuid="04621870-7b70-4576-8672-b5efea57f4e1">
+					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue( ) % 2 != 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="160" height="20" uuid="5c0f9dfb-7a02-40fc-ab63-2ce9883301c4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[  ID promoção:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="0" width="160" height="20" uuid="8b2bb84d-5c9c-46a3-a8a4-8045bc07256d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{idpromocao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="20" width="160" height="20" uuid="f3b480a6-a846-475e-8fb2-2194800d15d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nomeproduto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="160" height="20" uuid="09fa4206-606e-4a00-bacf-e605c17aa271"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Nome do produto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="40" width="160" height="20" uuid="09249baf-c3ca-4405-a576-87ee15ae1001"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.text.NumberFormat.getCurrencyInstance(new Locale("pt","br")).format(Double.valueOf($F{precoproduto}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="160" height="20" uuid="df5ad5ce-07bc-4d7c-8a92-69886000da81"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Preço do produto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="60" width="160" height="20" uuid="c309ba7e-67fe-4035-b386-0ba4ecd159f6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{porcentagemdesconto} + "%"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="60" width="160" height="20" uuid="3b5f18d8-92f9-4193-a828-3ab3e221c9d9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Porcentagem de desconto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="80" width="160" height="20" uuid="38df1b3f-a5f1-4e74-bd81-c0a6fc172f3b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.text.NumberFormat.getCurrencyInstance(new Locale("pt","br")).format($V{PRECO_COM_DESCONTO})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="80" width="160" height="20" uuid="6183d3f6-5cf7-4043-9d34-8e3cbe72d5b3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Preço com desconto:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="8" width="160" height="20" uuid="484d4735-1793-4b29-9f56-6d515a9834b9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="8" width="50" height="20" uuid="1cc68173-1137-4803-a792-511f271f5741"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="520" y="8" width="35" height="20" uuid="fd1d4360-9fb8-4505-90fd-12fb1dfa440b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

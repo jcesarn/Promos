@@ -1,0 +1,8 @@
+@charset "UTF-8";
+.input-erro {
+	border-color: red;
+}
+
+.texto-erro {
+	color: red;
+}

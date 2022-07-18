@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioComplexoPromocaoAvaliacao" pageWidth="395" pageHeight="170" columnWidth="395" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7f2580d2-5120-433f-a5f5-3551fd687026">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[cHJvbW9zLmF2YWxpYWNvZXMgLDE1LDQyLGUxNjhiYTY0LWM5ZGEtNGJiZi1iMTg5LTA5YmEyYjFi
+ZDI4Yztwcm9tb3MudXN1YXJpbyAsMTcyLDE1LDEyYzhjMTdmLWQxYTAtNGJkOS05ZmY2LTY5Njkx
+NjhiYTkxZTs=]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco Promos"/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<parameter name="IDPROMOCAO" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT promos.avaliacoes.idavaliacao,
+	promos.avaliacoes.idpromocao,
+	promos.avaliacoes.idusuario,
+	promos.avaliacoes.nota,
+	promos.avaliacoes.comentario,
+	promos.usuario.nome
+FROM promos.avaliacoes
+	INNER JOIN promos.usuario ON 
+	 promos.avaliacoes.idusuario = promos.usuario.codigo 
+WHERE 
+	 promos.avaliacoes.idpromocao = $P{IDPROMOCAO}]]>
+	</queryString>
+	<field name="idavaliacao" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idavaliacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="idavaliacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="avaliacoes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idpromocao" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idpromocao"/>
+		<property name="com.jaspersoft.studio.field.label" value="idpromocao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="avaliacoes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idusuario" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="idusuario"/>
+		<property name="com.jaspersoft.studio.field.label" value="idusuario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="avaliacoes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nota" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="nota"/>
+		<property name="com.jaspersoft.studio.field.label" value="nota"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="avaliacoes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="comentario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="comentario"/>
+		<property name="com.jaspersoft.studio.field.label" value="comentario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="avaliacoes"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="140" splitType="Prevent">
+			<rectangle>
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="395" height="140" isPrintWhenDetailOverflows="true" backcolor="#F0F0F0" uuid="8fadefff-d4cc-4a62-a02c-87e20f82fb7a">
+					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue( ) % 2 == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="395" height="140" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="caaed4f7-0525-4f1b-a224-b3c5fa71db89">
+					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue( ) % 2 != 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement x="130" y="10" width="257" height="20" isRemoveLineWhenBlank="true" uuid="d1f01b1e-3e74-4731-915a-18a77b5473cc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{idavaliacao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="10" width="110" height="20" isRemoveLineWhenBlank="true" uuid="29a99f4d-bbad-4ab0-819e-4a7e7d5cfdee"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID avaliação:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="30" width="257" height="20" isRemoveLineWhenBlank="true" uuid="4663c895-e759-4cac-88ab-8121617b2da4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{idusuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="30" width="110" height="20" isRemoveLineWhenBlank="true" uuid="fbeb5912-4538-4111-b6bf-6fcd42da7a2e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID usuário:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="70" width="257" height="20" isRemoveLineWhenBlank="true" uuid="4d4984b2-de25-4a23-8dff-555fdcbb174a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="70" width="110" height="20" isRemoveLineWhenBlank="true" uuid="86ec14f4-ecad-4cd1-9350-92a14f499e70"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nota:]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="9" y="110" width="378" height="20" isRemoveLineWhenBlank="true" uuid="b90c981d-0d9c-4c73-8f31-f313197f4e0b">
+					<printWhenExpression><![CDATA[$F{comentario} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{comentario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="90" width="378" height="20" isRemoveLineWhenBlank="true" uuid="697090cd-1c8c-475d-be90-b428d6d4ffc3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comentário:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="50" width="257" height="20" isRemoveLineWhenBlank="true" uuid="14f1bec2-fe24-4e60-bd43-cbc8a3b0a360"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="50" width="110" height="20" isRemoveLineWhenBlank="true" uuid="651adb5b-5946-4a46-9bac-94b4adf42204"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do usuário:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

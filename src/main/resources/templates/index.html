@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel='stylesheet' href="../static/css/style.css" th:href="@{/css/style.css}">
+    <script type="text/javascript" href="../static/js/javascript.js" th:src="@{/js/javascript.js}"></script>
+    <title>PROMOS</title>
+</head>
+<body>
+	<h1>PROMOS</h1>
+	<hr/><br>
+	<div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">		
+		<label for="name">Usuário Logado: </label>
+		<span name="name" sec:authentication="name"></span>
+		<label for="authorities">Papéis: </label>
+		<span name="authorities" sec:authentication="principal.authorities"></span>
+		<br><br>
+		<div>
+			<form action="#" th:action="@{/logout}" method="post">					
+				<input type="submit" value="Logout" />
+			</form>
+		</div>
+	</div>
+	<div th:fragment="login" class="login" sec:authorize="!isAuthenticated()">
+		<form action="#" th:action="@{/login}" method="get">					
+			<input type="submit" value="Login" />
+		</form>
+	</div>
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<br><hr/><br>
+		<form action="#" th:action="@{/cadastrarusuario}" method="get">
+			<input type="submit" value="Cadastrar Novo Usuário">
+		</form>
+		<form action="#" th:action="@{/cadastrarpromo}" method="get">
+			<input type="submit" value="Cadastrar nova promoção">
+		</form>
+		<form action="#" th:action="@{/gerarrelatoriosimples}" method="get">
+			<input type="submit" value="Gerar relatório simples">
+		</form>
+		<form action="#" th:action="@{/gerarrelatoriocomplexo}" method="get">
+			<input type="submit" value="Gerar relatório complexo">
+		</form>
+	</div>
+	<br><hr/>
+	<div th:each="promocao : ${promocoes}">
+		<form action="#" th:object="${promocao}" th:action="@{/visualizarpromo}" method="post">
+			<input type="hidden" name="idpromocao" th:value="${promocao.idpromocao}" readonly><br>
+			<label for="nomeproduto">Produto: </label>
+			<input class="inputpreenchido" type="text" name="nomeproduto" th:value="${promocao.nomeproduto}" readonly><br>
+			<label for="precoproduto">Preco: </label>
+			<input class="inputpreenchido" type="number" step="0.01" name="precoproduto" th:value="${promocao.precoproduto}" readonly><br>
+			<label for="porcentagemdesconto">Desconto: </label>
+			<input class="inputpreenchido" type="number" name="porcentagemdesconto" th:value="${promocao.porcentagemdesconto}" readonly><br>
+			<label for="precocomdesconto">Preco com desconto: </label>
+			<input class="inputpreenchido" type="number" step="0.01" name="precocomdesconto" th:with="valor=${promocao.precoproduto - (promocao.precoproduto * promocao.porcentagemdesconto / 100)}" th:value="${valor}" readonly><br>
+			<br>
+			<input type="submit" value="Visualizar">
+		</form>
+		<form sec:authorize="hasRole('ROLE_ADMIN')" action="#" th:object="${promocao}" th:action="@{/confirmarremocao}" method="post">
+			<input type="hidden" name="idpromocao" th:value="${promocao.idpromocao}" readonly>
+			<input type="hidden" name="nomeproduto" th:value="${promocao.nomeproduto}" readonly>
+			<input type="hidden" name="precoproduto" th:value="${promocao.precoproduto}" readonly>
+			<input type="hidden" name="porcentagemdesconto" th:value="${promocao.porcentagemdesconto}" readonly>
+			<input type="submit" value="Remover">
+		</form>
+		<form sec:authorize="hasRole('ROLE_ADMIN')" action="#" th:object="${promocao}" th:action="@{/confirmaralteracao}" method="post">
+			<input type="hidden" name="idpromocao" th:value="${promocao.idpromocao}" readonly>
+			<input type="hidden" name="nomeproduto" th:value="${promocao.nomeproduto}" readonly>
+			<input type="hidden" name="precoproduto" th:value="${promocao.precoproduto}" readonly>
+			<input type="hidden" name="porcentagemdesconto" th:value="${promocao.porcentagemdesconto}" readonly>
+			<input type="submit" value="Alterar">
+		</form>
+		<br><br><hr/>
+	</div>
+</body>
+<footer>
+	<h4>Rodapé</h4>
+</footer>
+</html>

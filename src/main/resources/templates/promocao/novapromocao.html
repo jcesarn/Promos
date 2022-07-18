@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel='stylesheet' href="../static/css/style.css" th:href="@{/css/style.css}">
+	<link rel='stylesheet' href="../static/css/validacaocampos.css" th:href="@{/css/validacaocampos.css}">
+	<script type="text/javascript" href="../static/js/javascript.js" th:src="@{/js/javascript.js}"></script>
+	<title>PROMOS</title>
+</head>
+<body>
+	<h1>PROMOS</h1>
+	<hr/>
+	<h2>Nova promoção</h2>
+	<form action="#" th:action="@{/cadastrarpromo}" th:object="${promocao}" method="post">
+		<input type="hidden" th:field="*{idpromocao}" readonly>
+		<label for="nomeproduto">Produto: </label>
+		<input type="text" name="nomeproduto" th:field="*{nomeproduto}" placeholder="Nome do produto" th:errorclass="input-erro">
+		<span class="texto-erro" th:if="${#fields.hasErrors('nomeproduto')}" th:each="erro : ${#fields.errors('nomeproduto')}" th:text="${erro} + '. '">Erro no nome do produto</span><br>
+		<label for="precoproduto">Preço: </label>
+		<input type="number" step="0.01" min=0 name="precoproduto" th:field="*{precoproduto}" th:errorclass="input-erro">
+		<span class="texto-erro" th:if="${#fields.hasErrors('precoproduto')}" th:each="erro : ${#fields.errors('precoproduto')}" th:text="${erro} + '. '">Erro no preco do produto</span><br>
+		<label for="porcentagemdesconto">Desconto: </label>
+		<input type="number" min=0 name="porcentagemdesconto" th:field="*{porcentagemdesconto}" th:errorclass="input-erro">
+		<span class="texto-erro" th:if="${#fields.hasErrors('porcentagemdesconto')}" th:each="erro : ${#fields.errors('porcentagemdesconto')}" th:text="${erro} + '. '">Erro na porcentagem de desconto do produto</span><br>
+		<br>
+		<input type="submit" value="Cadastrar">
+	</form>
+	<br><br><hr/><br>
+	<a th:href="@{/}">Voltar</a>
+	<br><br><hr/>
+</body>
+<footer>
+	<h4>Rodapé</h4>
+</footer>
+</html>

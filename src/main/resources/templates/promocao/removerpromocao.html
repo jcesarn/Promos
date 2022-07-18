@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel='stylesheet' href="../static/css/style.css" th:href="@{/css/style.css}">
+    <script type="text/javascript" href="../static/js/javascript.js" th:src="@{/js/javascript.js}"></script>
+	<title>PROMOS</title>
+</head>
+<body>
+	<h1>PROMOS</h1>
+	<hr/>
+	<h2>Remover promoção</h2>
+	<form action="#" th:action="@{/removerpromo}" th:object="${promocao}" method="post">
+		<input type="hidden" th:field="*{idpromocao}" readonly>
+		<label for="nomeproduto">Produto: </label>
+		<input class="inputpreenchido" type="text" name="nomeproduto" th:field="*{nomeproduto}" readonly><br>
+		<label for="precoproduto">Preço: </label>
+		<input class="inputpreenchido" type="number" step="0.01" min=0 name="precoproduto" th:field="*{precoproduto}" readonly><br>
+		<label for="porcentagemdesconto">Desconto: </label>
+		<input class="inputpreenchido" type="number" min=0 name="porcentagemdesconto" th:field="*{porcentagemdesconto}" readonly><br><br>
+		<input type="submit" value="Remover">
+	</form>
+	<br><br><hr/><br>
+	<a th:href="@{/}">Voltar</a>
+	<br><br><hr/>
+</body>
+<footer>
+	<h4>Rodapé</h4>
+</footer>
+</html>

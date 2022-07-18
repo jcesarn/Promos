@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel='stylesheet' href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel='stylesheet' href="../static/css/validacaocampos.css" th:href="@{/css/validacaocampos.css}">
+    <script type="text/javascript" href="../static/js/javascript.js" th:src="@{/js/javascript.js}"></script>
+    <title>PROMOS</title>
+</head>
+<body>
+	<h1>PROMOS</h1>
+	<hr/>
+	<h2>Página de Login</h2>
+	<p>Usuário exemplo: Grosbilda / 12345 / ADMIN</p>
+	<p>Usuário exemplo: Estrobilobaldo / 12345 / USUARIO</p>
+	<p>Usuário exemplo: Zirgonisvaldo / 12345 / USUARIO - ADMIN</p>
+	<p class="texto-erro" th:if="${param.error}">Usuário e/ou senha inválidos</p>
+	<p class="texto-erro" th:if="${param.logout}">Você foi deslogado</p>
+	<form th:action="@{/login}" method="post">
+		<label for="username">Usuário:</label>
+		<input type="text" id="username" name="username" autofocus="autofocus"><br>
+		<label for="password">Senha:</label>
+		<input type="password" id="password" name="password"><br>
+		<br>
+		<input type="submit" value="Logar"/><br>
+	</form>
+	<br><hr/><br>
+	<a th:href="@{/}">Voltar</a>
+	<br><br><hr/>
+</body>
+<footer>
+	<h4>Rodapé</h4>
+</footer>
+</html>
